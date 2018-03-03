@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { CardType } from '../interfaces';
 
 const StyledCard = styled.div`
   background-color: white;
@@ -24,16 +25,27 @@ const StyledCardText = styled.div`
 `;
 
 interface Props {
-  text: string;
+  card: CardType;
+  flipped: boolean;
 }
 
 class Card extends React.Component<Props> {
   render() {
-    return (
-      <StyledCard>
-        <StyledCardText>{this.props.text}</StyledCardText>
-      </StyledCard>
-    );
+    const { flipped, card } = this.props;
+    const { frontText, backText } = card;
+    if (flipped) {
+      return (
+        <StyledCard>
+          <StyledCardText>{backText}</StyledCardText>
+        </StyledCard>
+      );
+    } else {
+      return (
+        <StyledCard>
+          <StyledCardText>{frontText}</StyledCardText>
+        </StyledCard>
+      );
+    }
   }
 }
 

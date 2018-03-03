@@ -10,14 +10,16 @@ const StyledHeader = styled.header`
   align-items: center;
   width: 100%;
   height: 50px;
-  padding: 0px 10px;
+  h1 {
+    margin-left: 20px;
+  }
 `;
 
 const StyledNav = styled.nav`
   margin-left: auto;
   margin-right: 20px;
   a {
-    margin: 5px;
+    margin: 10px;
     color: #ccc;
   }
 `;
