@@ -32,7 +32,7 @@ class PlayPage extends React.Component<RouteProps, State> {
   componentDidMount() {
     this.fetchCards().then((cards: CardType[]) => {
       this.setState({
-        cards: cards,
+        cards,
         loading: false,
         error: false
       });
@@ -48,31 +48,39 @@ class PlayPage extends React.Component<RouteProps, State> {
   render() {
     const { cards, loading, error } = this.state;
     let noCards = cards.length === 0;
+
     if (loading) {
-      return (
-        <StyledContainer>
-          <DonutSpinner />
-        </StyledContainer>
-      );
-    } else if (error) {
-      return (
-        <StyledContainer>
-          Error loading cards!
-        </StyledContainer>
-      );
-    } else if (noCards) {
-      return (
-        <StyledContainer>
-          No cards!
-        </StyledContainer>
-      );
+      return this.renderLoading();
+    } else if (error || noCards) {
+      let errorMessage: string = noCards ? 'No cards!' : 'Error loading cards';
+      return this.renderError(errorMessage);
     } else {
-      return (
-        <StyledContainer>
-          <Cards cards={cards} />
-        </StyledContainer>
-      );
+      return this.renderCards(cards);
     }
+  }
+
+  renderLoading() {
+    return (
+      <StyledContainer>
+        <DonutSpinner />
+      </StyledContainer>
+    );
+  }
+
+  renderError(errorMessage: string) {
+    return (
+      <StyledContainer>
+        {errorMessage}
+      </StyledContainer>
+    );
+  }
+
+  renderCards(cards: CardType[]) {
+    return (
+      <StyledContainer>
+        <Cards cards={cards} />
+      </StyledContainer>
+    );
   }
 }
 
