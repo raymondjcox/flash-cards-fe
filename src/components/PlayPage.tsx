@@ -4,6 +4,7 @@ import Cards from './Cards';
 import styled from 'styled-components';
 import { CardType } from '../interfaces';
 import { RouteProps } from 'react-router';
+import { FetchCards } from '../api/Cards';
 
 const StyledContainer = styled.div`
   min-height: 100vh;
@@ -30,7 +31,7 @@ class PlayPage extends React.Component<RouteProps, State> {
   }
 
   componentDidMount() {
-    this.fetchCards().then((cards: CardType[]) => {
+    FetchCards().then((cards: CardType[]) => {
       this.setState({
         cards,
         loading: false,
@@ -41,18 +42,13 @@ class PlayPage extends React.Component<RouteProps, State> {
     });
   }
 
-  fetchCards() {
-    return fetch('/api/v1/cards').then((r) => r.json());
-  }
-
   render() {
     const { cards, loading, error } = this.state;
     let noCards = cards.length === 0;
-
+    let errorMessage: string = noCards ? 'No cards!' : 'Error loading cards';
     if (loading) {
       return this.renderLoading();
     } else if (error || noCards) {
-      let errorMessage: string = noCards ? 'No cards!' : 'Error loading cards';
       return this.renderError(errorMessage);
     } else {
       return this.renderCards(cards);

@@ -1,35 +1,7 @@
 import * as React from 'react';
 import Card from './Card';
-import styled from 'styled-components';
+import { BlueButton, GreenButton } from './Button';
 import { CardType } from '../interfaces';
-
-const StyledButton = styled.button`
-  border: none;
-  color: white;
-  border-radius: 4px;
-  padding: 10px 20px;
-  margin: 0px 5px;
-  font-size: 0.9rem;
-  transition: background-color .5s;
-  outline: none;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-const StyledGreenButton = StyledButton.extend`
-  background-color: #28a745;
-  &:hover {
-    background-color: #31cc54;
-  }
-`;
-
-const StyledBlueButton = StyledButton.extend`
-  background-color: #17a2b8;
-  &:hover {
-    background-color: #1cbed8;
-  }
-`;
 
 interface State {
   currentCardIndex: number;
@@ -68,8 +40,8 @@ class Cards extends React.Component<Props, State> {
       <>
         <Card card={currentCard} flipped={flipped} />
         <div>
-          <StyledBlueButton onClick={() => this.flipCard()}>Flip</StyledBlueButton>
-          <StyledGreenButton onClick={() => this.goNext()}>Next</StyledGreenButton>
+          <BlueButton onClick={() => this.flipCard()}>Flip</BlueButton>
+          <GreenButton onClick={() => this.goNext()}>Next</GreenButton>
         </div>
       </>
     );

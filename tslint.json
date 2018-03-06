@@ -22,7 +22,7 @@
         "jsx-no-lambda": false,
         "jsx-no-multiline-js": false,
         "label-position": true,
-        "max-line-length": [ true, 120 ],
+        "max-line-length": false,
         "member-ordering": [
             true,
             "public-before-private",
@@ -44,7 +44,7 @@
         ],
         "no-consecutive-blank-lines": true,
         "no-construct": true,
-        "no-debugger": true,
+        "no-debugger": false,
         "no-duplicate-variable": true,
         "no-empty": true,
         "no-eval": true,
