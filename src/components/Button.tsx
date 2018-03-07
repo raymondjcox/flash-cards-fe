@@ -21,6 +21,13 @@ const GreenButton = Button.extend`
   }
 `;
 
+const RedButton = Button.extend`
+  background-color: #b54949;
+  &:hover {
+    background-color: #d81c1c;
+  }
+`;
+
 const BlueButton = Button.extend`
   background-color: #17a2b8;
   &:hover {
@@ -28,4 +35,4 @@ const BlueButton = Button.extend`
   }
 `;
 
-export { BlueButton, GreenButton };
+export { BlueButton, GreenButton, RedButton };

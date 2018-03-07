@@ -1,6 +1,5 @@
 export interface CardType {
-  id: number;
+  id: number | undefined;
   frontText: string;
   backText: string;
-  flipped: boolean;
 }

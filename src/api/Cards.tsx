@@ -16,3 +16,14 @@ export function FetchDeleteCard(card: CardType) {
   return fetch(`/api/v1/cards/${card.id}`, { method: 'delete' })
     .then((r) => fetchErrorCheck(r));
 }
+
+export function FetchCreateCard(card: CardType) {
+  return fetch(`/api/v1/cards`, {
+    method: 'post',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ card: { front_text: card.frontText, back_text: card.backText } })
+  }).then((r) => fetchErrorCheck(r));
+}

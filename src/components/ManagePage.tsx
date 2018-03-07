@@ -1,22 +1,31 @@
 import * as React from 'react';
 import DonutSpinner from './DonutSpinner';
 import styled from 'styled-components';
-import CardsList from './CardsList';
+import CardsTable from './CardsTable';
 import { CardType } from '../interfaces';
 import { RouteProps } from 'react-router';
 import { FetchCards, FetchDeleteCard } from '../api/Cards';
+import { BlueButton } from './Button';
+import { withRouter } from 'react-router-dom';
+
+const StyledContainer = styled.div`
+  min-height: calc(100vh - 100px);
+  text-align: center;
+  padding-top: 50px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const StyledButtonContainer = styled.div`
+  text-align: right;
+  margin-bottom: 20px;
+`;
 
 const ERROR_DELETING = 'Error deleting card!';
 const ERROR_LOADING = 'Error loading cards!';
 const ERROR_NO_CARDS = 'No cards!';
 const NO_ERROR = '';
-
-const StyledContainer = styled.div`
-  min-height: calc(100vh - 100px);
-  display: flex;
-  justify-content: center;
-  padding-top: 50px;
-`;
 
 interface State {
   cards: CardType[];
@@ -71,19 +80,37 @@ class ManagePage extends React.Component<RouteProps, State> {
   }
 
   renderError(errorMessage: string) {
+    const CreateButton = this.renderCreateButton();
     return (
       <StyledContainer>
         {errorMessage}
+        <CreateButton />
       </StyledContainer>
     );
   }
 
   renderCards(cards: CardType[]) {
+    const CreateButton = this.renderCreateButton();
+
     return (
       <StyledContainer>
-        <CardsList cards={cards} deleteCard={(card: CardType) => this.deleteCard(card)} />
+        <StyledButtonContainer>
+          <CreateButton />
+        </StyledButtonContainer>
+        <CardsTable cards={cards} deleteCard={(card: CardType) => this.deleteCard(card)} />
       </StyledContainer>
     );
+  }
+
+  renderCreateButton() {
+    return withRouter((r) => (
+      <BlueButton
+        type="button"
+        onClick={() => r.history.push('/create-card')}
+      >
+        Create card
+      </BlueButton>
+    ));
   }
 
   deleteCard(card: CardType) {

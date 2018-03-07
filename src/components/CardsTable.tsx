@@ -6,7 +6,6 @@ import { CardType } from '../interfaces';
 
 const StyledTable = styled.table`
   border-collapse: collapse;
-  width: 100%;
   td {
     padding: 5px 20px;
     width: 45%;
@@ -20,6 +19,9 @@ const StyledTable = styled.table`
   }
   tr {
     border-top: 1px solid #ccc;
+    &:first-child {
+      border-top: none;
+    }
   }
 `;
 
@@ -60,8 +62,14 @@ class CardsTable extends React.Component<Props> {
 
     return (
       <StyledTable>
-        <th>Front</th><th>Back</th><th>Manage</th>
-        {tableRows}
+        <thead>
+          <tr>
+            <th>Front</th><th>Back</th><th>Manage</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tableRows}
+        </tbody>
       </StyledTable>
     );
   }
