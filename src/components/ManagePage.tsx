@@ -3,7 +3,6 @@ import DonutSpinner from './DonutSpinner';
 import styled from 'styled-components';
 import CardsTable from './CardsTable';
 import { CardType } from '../interfaces';
-import { RouteProps } from 'react-router';
 import { FetchCards, FetchDeleteCard } from '../api/Cards';
 import { BlueButton } from './Button';
 import { withRouter } from 'react-router-dom';
@@ -33,8 +32,8 @@ interface State {
   errorMessage: string;
 }
 
-class ManagePage extends React.Component<RouteProps, State> {
-  constructor(props: RouteProps) {
+class ManagePage extends React.Component<any, State> {
+  constructor(props: any) {
     super(props);
     let cards: CardType[] = [];
     let loading = true;
@@ -97,7 +96,7 @@ class ManagePage extends React.Component<RouteProps, State> {
         <StyledButtonContainer>
           <CreateButton />
         </StyledButtonContainer>
-        <CardsTable cards={cards} deleteCard={(card: CardType) => this.deleteCard(card)} />
+        <CardsTable cards={cards} deleteCard={(c: CardType) => this.deleteCard(c)} editCard={(c: CardType) => this.editCard(c)} />
       </StyledContainer>
     );
   }
@@ -116,14 +115,21 @@ class ManagePage extends React.Component<RouteProps, State> {
   deleteCard(card: CardType) {
     let { cards, errorMessage } = this.state;
     this.setState({cards, errorMessage, loading: true});
+    if (card.id == null) {
+      return;
+    }
 
-    FetchDeleteCard(card).then(() => {
+    FetchDeleteCard(card.id).then(() => {
       cards = cards.filter(({id}) => id !== card.id);
       errorMessage = cards.length === 0 ? ERROR_NO_CARDS : NO_ERROR;
       this.setState({cards, loading: false, errorMessage});
     }).catch(() => {
       this.setState({cards, loading: false, errorMessage: ERROR_DELETING});
     });
+  }
+
+  editCard(card: CardType) {
+    this.props.history.push(`/edit-card/${card.id}`);
   }
 }
 

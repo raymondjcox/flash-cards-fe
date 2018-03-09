@@ -7,7 +7,7 @@ const Button = styled.button`
   padding: 10px 20px;
   margin: 0px 5px;
   font-size: 0.9rem;
-  transition: background-color .5s;
+  transition: background-color .2s;
   outline: none;
   &:hover {
     cursor: pointer;
@@ -29,9 +29,9 @@ const RedButton = Button.extend`
 `;
 
 const BlueButton = Button.extend`
-  background-color: #17a2b8;
+  background-color: #1772b8;
   &:hover {
-    background-color: #1cbed8;
+    background-color: #2395ed;
   }
 `;
 

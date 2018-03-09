@@ -42,6 +42,7 @@ const EditIcons = styled.div`
 interface Props {
   cards: CardType[];
   deleteCard: Function;
+  editCard: Function;
 }
 
 class CardsTable extends React.Component<Props> {
@@ -53,7 +54,7 @@ class CardsTable extends React.Component<Props> {
         <td>{card.backText}</td>
         <td>
           <EditIcons>
-            <EditSvg />
+            <EditSvg onClick={() => this.props.editCard(card)}/>
             <DeleteSvg onClick={() => this.props.deleteCard(card)} />
           </EditIcons>
         </td>

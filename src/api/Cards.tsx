@@ -8,13 +8,15 @@ function fetchErrorCheck(r: any) {
 }
 
 export function FetchCards() {
-  return fetch('/api/v1/cards')
-    .then((r) => fetchErrorCheck(r));
+  return fetch('/api/v1/cards').then(fetchErrorCheck);
 }
 
-export function FetchDeleteCard(card: CardType) {
-  return fetch(`/api/v1/cards/${card.id}`, { method: 'delete' })
-    .then((r) => fetchErrorCheck(r));
+export function FetchCard(id: number) {
+  return fetch(`/api/v1/cards/${id}`).then(fetchErrorCheck);
+}
+
+export function FetchDeleteCard(id: number) {
+  return fetch(`/api/v1/cards/${id}`, { method: 'delete' }).then(fetchErrorCheck);
 }
 
 export function FetchCreateCard(card: CardType) {
@@ -25,5 +27,17 @@ export function FetchCreateCard(card: CardType) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ card: { front_text: card.frontText, back_text: card.backText } })
-  }).then((r) => fetchErrorCheck(r));
+  }).then(fetchErrorCheck);
+}
+
+export function FetchUpdateCard(card: CardType) {
+  const { id } = card;
+  return fetch(`/api/v1/cards/${id}`, {
+    method: 'put',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ card: { front_text: card.frontText, back_text: card.backText } })
+  }).then(fetchErrorCheck);
 }
