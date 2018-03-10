@@ -1,6 +1,6 @@
 import * as React from 'react';
-import DonutSpinner from './DonutSpinner';
-import Cards from './Cards';
+import DonutSpinner from '../components/DonutSpinner';
+import CardsContainer from './CardsContainer';
 import styled from 'styled-components';
 import { CardType } from '../interfaces';
 import { RouteProps } from 'react-router';
@@ -73,7 +73,7 @@ class PlayPage extends React.Component<RouteProps, State> {
   renderCards(cards: CardType[]) {
     return (
       <StyledContainer>
-        <Cards cards={cards} />
+        <CardsContainer cards={cards} />
       </StyledContainer>
     );
   }

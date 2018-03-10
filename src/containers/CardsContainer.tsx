@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Card from './Card';
-import { BlueButton, GreenButton } from './Button';
+import Card from '../components/Card';
+import { BlueButton, GreenButton } from '../components/Button';
 import { CardType } from '../interfaces';
 
 interface State {

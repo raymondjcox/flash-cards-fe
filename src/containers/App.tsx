@@ -1,11 +1,10 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import './App.css';
-import Header from './components/Header';
-import ManagePage from './components/ManagePage';
-import PlayPage from './components/PlayPage';
-import CreateCardPage from './components/CreateCardPage';
-import EditCardPage from './components/EditCardPage';
+import Header from '../components/Header';
+import ManagePage from './ManagePage';
+import PlayPage from './PlayPage';
+import CreateCardPage from './CreateCardPage';
+import EditCardPage from './EditCardPage';
 import { Route } from 'react-router-dom';
 
 const StyledPageContainer = styled.div`

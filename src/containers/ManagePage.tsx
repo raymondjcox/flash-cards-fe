@@ -1,10 +1,10 @@
 import * as React from 'react';
-import DonutSpinner from './DonutSpinner';
+import DonutSpinner from '../components/DonutSpinner';
 import styled from 'styled-components';
-import CardsTable from './CardsTable';
+import CardsTable from '../components/CardsTable';
 import { CardType } from '../interfaces';
 import { FetchCards, FetchDeleteCard } from '../api/Cards';
-import { BlueButton } from './Button';
+import { BlueButton } from '../components/Button';
 import { withRouter } from 'react-router-dom';
 
 const StyledContainer = styled.div`

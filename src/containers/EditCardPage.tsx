@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { RouteProps } from 'react-router';
 import styled from 'styled-components';
-import { BlueButton, RedButton } from './Button';
-import { FetchCreateCard } from '../api/Cards';
-import EditableCard from './EditableCard';
 import { CardType } from '../interfaces';
+import { FetchCard, FetchUpdateCard } from '../api/Cards';
+import { BlueButton, RedButton } from '../components/Button';
+import EditableCard from '../components/EditableCard';
 import { withRouter } from 'react-router-dom';
 
 const StyledContainer = styled.div`
@@ -22,30 +21,30 @@ interface State {
   card: CardType;
 }
 
-class CreateCardPage extends React.Component<RouteProps, State> {
-  constructor(props: RouteProps) {
+class EditCardPage extends React.Component<any, State> {
+  constructor(props: any) {
     super(props);
+    let id: number = props.match.params.id;
     let card: CardType = {
-      id: undefined,
+      id,
       frontText: '',
       backText: ''
     };
-
     this.state = { card };
   }
 
-  createCard(routeHistory: any) {
-    FetchCreateCard(this.state.card).then(() => {
-      routeHistory.push('/manage');
+  componentDidMount() {
+    let { card: { id } } = this.state;
+    if (id == null) {
+      return;
+    }
+    FetchCard(id).then((card: CardType) => {
+      this.setState({ card });
     });
   }
 
-  updateCard(card: CardType) {
-    this.setState({ card });
-  }
-
   render() {
-    const { card } = this.state;
+    let { card } = this.state;
     const CancelButton = withRouter((r) => (
       <RedButton
         type="button"
@@ -55,12 +54,12 @@ class CreateCardPage extends React.Component<RouteProps, State> {
       </RedButton>
     ));
 
-    const CreateButton = withRouter((r) => (
+    const UpdateButton = withRouter((r) => (
       <BlueButton
         type="button"
-        onClick={() => this.createCard(r.history)}
+        onClick={() => this.saveCard(r.history)}
       >
-        Create
+        Update
       </BlueButton>
     ));
 
@@ -69,11 +68,21 @@ class CreateCardPage extends React.Component<RouteProps, State> {
         <EditableCard card={card} updateCard={(newCard: CardType) => this.updateCard(newCard)}/>
         <StyledButtonContainer>
           <CancelButton />
-          <CreateButton />
+          <UpdateButton />
         </StyledButtonContainer>
       </StyledContainer>
     );
   }
-}
 
-export default CreateCardPage;
+  updateCard(card: CardType) {
+    this.setState({ card });
+  }
+
+  saveCard(routeHistory: any) {
+    let { card } = this.state;
+    FetchUpdateCard(card).then(() => {
+      routeHistory.push('/manage');
+    });
+  }
+}
+export default EditCardPage;

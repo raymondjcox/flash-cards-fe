@@ -5,3 +5,17 @@ body {
   color: #333;
   background-color: #EEE;
 }
+
+a, a:visited {
+  color: #CCC;
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 1.4rem;
+}
