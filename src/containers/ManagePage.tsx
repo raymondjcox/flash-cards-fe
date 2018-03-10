@@ -5,7 +5,6 @@ import CardsTable from '../components/CardsTable';
 import { CardType } from '../interfaces';
 import { FetchCards, FetchDeleteCard } from '../api/Cards';
 import { BlueButton } from '../components/Button';
-import { withRouter } from 'react-router-dom';
 
 const StyledContainer = styled.div`
   background-color: white;
@@ -81,7 +80,7 @@ class ManagePage extends React.Component<any, State> {
     return (
       <StyledContainer>
         {errorMessage}
-        <CreateButton />
+        {CreateButton}
       </StyledContainer>
     );
   }
@@ -92,7 +91,7 @@ class ManagePage extends React.Component<any, State> {
     return (
       <StyledContainer>
         <StyledButtonContainer>
-          <CreateButton />
+          {CreateButton}
         </StyledButtonContainer>
         <CardsTable cards={cards} deleteCard={(c: CardType) => this.deleteCard(c)} editCard={(c: CardType) => this.editCard(c)} />
       </StyledContainer>
@@ -100,20 +99,14 @@ class ManagePage extends React.Component<any, State> {
   }
 
   renderCreateButton() {
-    return withRouter((r) => (
-      <BlueButton
-        type="button"
-        onClick={() => r.history.push('/create-card')}
-      >
-        Create card
-      </BlueButton>
-    ));
+    return <BlueButton onClick={() => this.props.history.push('/create-card')}>Create card</BlueButton>;
   }
 
   deleteCard(card: CardType) {
     if (card.id == null) {
       return;
     }
+    this.setState({ loading: true });
 
     FetchDeleteCard(card.id).then(() => {
       const { cards } = this.state;

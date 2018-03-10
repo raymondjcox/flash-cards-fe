@@ -4,7 +4,6 @@ import { CardType } from '../interfaces';
 import { FetchCard, FetchUpdateCard } from '../api/Cards';
 import { BlueButton, RedButton } from '../components/Button';
 import EditableCard from '../components/EditableCard';
-import { withRouter } from 'react-router-dom';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -45,30 +44,12 @@ class EditCardPage extends React.Component<any, State> {
 
   render() {
     let { card } = this.state;
-    const CancelButton = withRouter((r) => (
-      <RedButton
-        type="button"
-        onClick={() => r.history.push('/manage')}
-      >
-        Cancel
-      </RedButton>
-    ));
-
-    const UpdateButton = withRouter((r) => (
-      <BlueButton
-        type="button"
-        onClick={() => this.saveCard(r.history)}
-      >
-        Update
-      </BlueButton>
-    ));
-
     return (
       <StyledContainer>
         <EditableCard card={card} updateCard={(newCard: CardType) => this.updateCard(newCard)}/>
         <StyledButtonContainer>
-          <CancelButton />
-          <UpdateButton />
+          <RedButton onClick={() => this.props.history.push('/manage')}>Cancel</RedButton>
+          <BlueButton onClick={() => this.saveCard()}>Update</BlueButton>
         </StyledButtonContainer>
       </StyledContainer>
     );
@@ -78,10 +59,10 @@ class EditCardPage extends React.Component<any, State> {
     this.setState({ card });
   }
 
-  saveCard(routeHistory: any) {
+  saveCard() {
     let { card } = this.state;
     FetchUpdateCard(card).then(() => {
-      routeHistory.push('/manage');
+      this.props.history.push('/manage');
     });
   }
 }
