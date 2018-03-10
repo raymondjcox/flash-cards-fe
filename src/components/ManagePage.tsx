@@ -15,6 +15,7 @@ const StyledContainer = styled.div`
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  text-align: center
 `;
 
 const StyledButtonContainer = styled.div`

@@ -7,6 +7,7 @@ import { CardType } from '../interfaces';
 const StyledTable = styled.table`
   border-collapse: collapse;
   td {
+    text-align: left;
     padding: 10px 20px;
     width: 45%;
     &:last-child {
@@ -18,7 +19,6 @@ const StyledTable = styled.table`
     border-bottom: 2px solid #eee;
   }
   tr {
-    // border-top: 1px solid #eee;
     &:first-child {
       border-top: none;
     }

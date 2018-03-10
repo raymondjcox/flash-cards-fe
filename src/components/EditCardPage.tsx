@@ -7,12 +7,10 @@ import { withRouter } from 'react-router-dom';
 import EditableCard from './EditableCard';
 
 const StyledContainer = styled.div`
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin-top: -50px;
+  padding-top: 50px;
 `;
 
 const StyledButtonContainer = styled.div`

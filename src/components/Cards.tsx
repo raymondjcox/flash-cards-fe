@@ -29,7 +29,7 @@ class Cards extends React.Component<Props, State> {
     const { currentCardIndex } = this.state;
     const { cards } = this.props;
     let newCardIndex = (currentCardIndex + 1) % cards.length;
-    this.setState({ currentCardIndex: newCardIndex });
+    this.setState({ currentCardIndex: newCardIndex, flipped: false });
   }
 
   render() {
