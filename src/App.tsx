@@ -10,7 +10,6 @@ import { Route } from 'react-router-dom';
 
 const StyledPageContainer = styled.div`
   padding-top: 50px;
-  background-color: #EEE;
 `;
 
 class App extends React.Component {

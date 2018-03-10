@@ -20,7 +20,14 @@ const StyledNav = styled.nav`
   margin-right: 20px;
   a {
     margin: 10px;
+    font-size: 14px;
+    font-weight: 600;
     color: #ccc;
+    transition: color .25s;
+    &:hover {
+      color: white;
+      text-decoration: none;
+    }
   }
 `;
 

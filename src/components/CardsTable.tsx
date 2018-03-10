@@ -7,7 +7,7 @@ import { CardType } from '../interfaces';
 const StyledTable = styled.table`
   border-collapse: collapse;
   td {
-    padding: 5px 20px;
+    padding: 10px 20px;
     width: 45%;
     &:last-child {
       width: 10%;
@@ -15,10 +15,10 @@ const StyledTable = styled.table`
   }
   th {
     padding: 5px 0px;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 2px solid #eee;
   }
   tr {
-    border-top: 1px solid #ccc;
+    // border-top: 1px solid #eee;
     &:first-child {
       border-top: none;
     }

@@ -21,15 +21,15 @@ class Cards extends React.Component<Props, State> {
   }
 
   flipCard() {
-    const { currentCardIndex, flipped } = this.state;
-    this.setState({currentCardIndex, flipped: !flipped});
+    const { flipped } = this.state;
+    this.setState({ flipped: !flipped });
   }
 
   goNext() {
     const { currentCardIndex } = this.state;
     const { cards } = this.props;
     let newCardIndex = (currentCardIndex + 1) % cards.length;
-    this.setState({currentCardIndex: newCardIndex, flipped: false});
+    this.setState({ currentCardIndex: newCardIndex });
   }
 
   render() {

@@ -9,7 +9,7 @@ const StyledCard = styled.div`
   width: 600px;
   max-width: 100%;
   margin-bottom: 20px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.29), 0 6px 6px rgba(0,0,0,0.33);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   color: black;
   display: flex;
   position: relative;

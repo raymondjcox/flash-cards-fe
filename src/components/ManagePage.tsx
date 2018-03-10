@@ -8,9 +8,10 @@ import { BlueButton } from './Button';
 import { withRouter } from 'react-router-dom';
 
 const StyledContainer = styled.div`
-  min-height: calc(100vh - 100px);
-  text-align: center;
-  padding-top: 50px;
+  background-color: white;
+  padding: 20px;
+  margin-top: 50px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.07), 0 6px 6px rgba(0,0,0,0.13);
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
@@ -43,17 +44,13 @@ class ManagePage extends React.Component<any, State> {
 
   componentDidMount() {
     FetchCards().then((cards: CardType[]) => {
-      let errorMessage = '';
       if (cards.length === 0) {
-        errorMessage = ERROR_NO_CARDS;
+        this.setState({ errorMessage: ERROR_NO_CARDS });
+      } else {
+        this.setState({ cards, loading: false });
       }
-      this.setState({
-        cards,
-        loading: false,
-        errorMessage
-      });
     }).catch(() => {
-      this.setState({cards: [], loading: false, errorMessage: ERROR_LOADING});
+      this.setState({loading: false, errorMessage: ERROR_LOADING});
     });
   }
 
@@ -113,18 +110,20 @@ class ManagePage extends React.Component<any, State> {
   }
 
   deleteCard(card: CardType) {
-    let { cards, errorMessage } = this.state;
-    this.setState({cards, errorMessage, loading: true});
     if (card.id == null) {
       return;
     }
 
     FetchDeleteCard(card.id).then(() => {
-      cards = cards.filter(({id}) => id !== card.id);
-      errorMessage = cards.length === 0 ? ERROR_NO_CARDS : NO_ERROR;
-      this.setState({cards, loading: false, errorMessage});
+      const { cards } = this.state;
+      if (cards.length === 0) {
+        this.setState({errorMessage: ERROR_NO_CARDS, loading: false});
+      } else {
+        let newCards = cards.filter(({id}) => id !== card.id);
+        this.setState({cards: newCards, loading: false});
+      }
     }).catch(() => {
-      this.setState({cards, loading: false, errorMessage: ERROR_DELETING});
+      this.setState({errorMessage: ERROR_DELETING, loading: false});
     });
   }
 
