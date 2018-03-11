@@ -3,10 +3,15 @@ import EditSvg from './EditSvg';
 import DeleteSvg from './DeleteSvg';
 import styled from 'styled-components';
 import { CardType } from '../interfaces';
+const ReactMarkdown = require('react-markdown');
 
 const StyledTable = styled.table`
   border-collapse: collapse;
   td {
+    h1 {
+      font-size: 14px;
+      font-weight: 500;
+    }
     text-align: left;
     padding: 10px 20px;
     width: 45%;
@@ -19,9 +24,6 @@ const StyledTable = styled.table`
     border-bottom: 2px solid #eee;
   }
   tr {
-    &:first-child {
-      border-top: none;
-    }
   }
 `;
 
@@ -50,8 +52,7 @@ class CardsTable extends React.Component<Props> {
     const { cards } = this.props;
     const tableRows = cards.map((card) => (
       <tr key={card.id}>
-        <td>{card.frontText}</td>
-        <td>{card.backText}</td>
+        <td><ReactMarkdown source={card.frontText} /></td>
         <td>
           <EditIcons>
             <EditSvg onClick={() => this.props.editCard(card)}/>
@@ -65,7 +66,7 @@ class CardsTable extends React.Component<Props> {
       <StyledTable>
         <thead>
           <tr>
-            <th>Front</th><th>Back</th><th>Manage</th>
+            <th>Front card</th><th>Manage</th>
           </tr>
         </thead>
         <tbody>
