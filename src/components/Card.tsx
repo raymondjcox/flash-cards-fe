@@ -1,10 +1,12 @@
 import * as React from 'react';
 import styled from 'styled-components';
+const ReactMarkdown = require('react-markdown');
 import { CardType } from '../interfaces';
 
 const StyledCard = styled.div`
   background-color: white;
   margin: 10px;
+  padding: 10px;
   height: 300px;
   width: 600px;
   max-width: 100%;
@@ -14,14 +16,27 @@ const StyledCard = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
+  overflow: scroll;
 `;
 
 const StyledCardText = styled.div`
-  font-size: 2.0rem;
+  // font-size: 2.0rem;
   align-self: center;
-  text-align: center;
+  // text-align: center;
   margin-top: auto;
   margin-bottom: auto;
+  h1 {
+    font-size: 2.0rem;
+    font-weight: 400;
+  }
+  pre {
+    background-color: #25292E;
+    max-width: 520px;
+    color: white;
+    padding: 10px 20px;
+    margin: 0px 20px;
+    overflow: scroll;
+  }
 `;
 
 interface Props {
@@ -36,13 +51,13 @@ class Card extends React.Component<Props> {
     if (flipped) {
       return (
         <StyledCard>
-          <StyledCardText>{backText}</StyledCardText>
+          <StyledCardText><ReactMarkdown source={backText} /></StyledCardText>
         </StyledCard>
       );
     } else {
       return (
         <StyledCard>
-          <StyledCardText>{frontText}</StyledCardText>
+          <StyledCardText><ReactMarkdown source={frontText} /></StyledCardText>
         </StyledCard>
       );
     }
