@@ -45,7 +45,7 @@ class ManagePage extends React.Component<any, State> {
   componentDidMount() {
     FetchCards().then((cards: CardType[]) => {
       if (cards.length === 0) {
-        this.setState({ errorMessage: ERROR_NO_CARDS });
+        this.setState({ errorMessage: ERROR_NO_CARDS, loading: false });
       } else {
         this.setState({ cards, loading: false });
       }
