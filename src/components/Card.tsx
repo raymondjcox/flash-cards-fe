@@ -20,9 +20,7 @@ const StyledCard = styled.div`
 `;
 
 const StyledCardText = styled.div`
-  // font-size: 2.0rem;
   align-self: center;
-  // text-align: center;
   margin-top: auto;
   margin-bottom: auto;
   h1 {
@@ -36,6 +34,12 @@ const StyledCardText = styled.div`
     padding: 10px 20px;
     margin: 0px 20px;
     overflow: scroll;
+  }
+
+  @media only screen and (max-width: 600px) {
+    h1 {
+      font-size: 1.5rem;
+    }
   }
 `;
 
