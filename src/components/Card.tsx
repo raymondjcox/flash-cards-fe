@@ -27,10 +27,13 @@ const StyledCardText = styled.div`
     font-size: 2.0rem;
     font-weight: 400;
   }
+  p {
+    text-align: center;
+  }
   pre {
     background-color: #25292E;
     max-width: 520px;
-    max-height: 150px;
+    max-height: 275px;
     color: white;
     padding: 10px 20px;
     margin: 0px 20px;

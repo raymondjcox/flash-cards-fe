@@ -31,7 +31,7 @@ class PlayPage extends React.Component<RouteProps, State> {
   }
 
   componentDidMount() {
-    FetchCards().then((cards: CardType[]) => {
+    FetchCards(true).then((cards: CardType[]) => {
       this.setState({
         cards,
         loading: false

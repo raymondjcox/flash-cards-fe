@@ -7,8 +7,8 @@ function fetchErrorCheck(r: any) {
   return r.json();
 }
 
-export function FetchCards() {
-  return fetch('/api/v1/cards').then(fetchErrorCheck);
+export function FetchCards(random: boolean = false) {
+  return fetch(`/api/v1/cards?random=${random}`).then(fetchErrorCheck);
 }
 
 export function FetchCard(id: number) {

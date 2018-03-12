@@ -8,7 +8,7 @@ const ReactMarkdown = require('react-markdown');
 const StyledTable = styled.table`
   border-collapse: collapse;
   td {
-    h1 {
+    h1,h2,h3,h4,h5 {
       font-size: 14px;
       font-weight: 500;
     }
