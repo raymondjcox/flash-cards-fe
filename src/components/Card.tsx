@@ -30,6 +30,7 @@ const StyledCardText = styled.div`
   pre {
     background-color: #25292E;
     max-width: 520px;
+    max-height: 150px;
     color: white;
     padding: 10px 20px;
     margin: 0px 20px;
