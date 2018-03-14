@@ -5,7 +5,7 @@ import { CardType } from '../interfaces';
 
 const StyledCard = styled.div`
   background-color: white;
-  margin: 10px;
+  margin: 10px 0px;
   padding: 10px;
   height: 300px;
   width: 600px;

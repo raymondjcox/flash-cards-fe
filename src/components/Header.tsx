@@ -10,6 +10,7 @@ const StyledHeader = styled.header`
   align-items: center;
   width: 100%;
   height: 50px;
+  z-index: 1;
   h1 {
     margin-left: 20px;
   }

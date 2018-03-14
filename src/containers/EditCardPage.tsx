@@ -10,6 +10,7 @@ const StyledContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding-top: 50px;
+  padding-bottom: 20px;
 `;
 
 const StyledButtonContainer = styled.div`
