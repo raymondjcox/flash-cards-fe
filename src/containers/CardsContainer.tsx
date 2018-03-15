@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Card from '../components/Card';
+import styled from 'styled-components';
 import { BlueButton, GreenButton } from '../components/Button';
 import { CardType } from '../interfaces';
 
@@ -11,6 +12,11 @@ interface State {
 interface Props {
   cards: CardType[];
 }
+
+const ButtonContainer = styled.div`
+  text-align: center;
+  margin-top: 20px;
+`;
 
 class Cards extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -39,10 +45,10 @@ class Cards extends React.Component<Props, State> {
     return (
       <>
         <Card card={currentCard} flipped={flipped} />
-        <div>
+        <ButtonContainer>
           <BlueButton onClick={() => this.flipCard()}>Flip</BlueButton>
           <GreenButton onClick={() => this.goNext()}>Next</GreenButton>
-        </div>
+        </ButtonContainer>
       </>
     );
   }

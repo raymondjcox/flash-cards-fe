@@ -8,7 +8,6 @@ import EditCardPage from './EditCardPage';
 import { Route } from 'react-router-dom';
 
 const StyledPageContainer = styled.div`
-  padding-top: 50px;
 `;
 
 class App extends React.Component {

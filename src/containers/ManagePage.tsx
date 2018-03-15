@@ -7,10 +7,7 @@ import { FetchCards, FetchDeleteCard } from '../api/Cards';
 import { BlueButton } from '../components/Button';
 
 const StyledContainer = styled.div`
-  background-color: white;
-  padding: 20px;
-  margin-top: 50px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.07), 0 6px 6px rgba(0,0,0,0.13);
+  padding: 80px 20px 20px;
   max-width: 600px;
   width: 100%;
   margin-left: auto;

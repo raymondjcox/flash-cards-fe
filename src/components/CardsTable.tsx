@@ -5,6 +5,12 @@ import styled from 'styled-components';
 import { CardType } from '../interfaces';
 const ReactMarkdown = require('react-markdown');
 
+const TableContainer = styled.div`
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 6px 6px rgba(0,0,0,0.15);
+`;
+
 const StyledTable = styled.table`
   border-collapse: collapse;
   td {
@@ -63,16 +69,18 @@ class CardsTable extends React.Component<Props> {
     ));
 
     return (
-      <StyledTable>
-        <thead>
-          <tr>
-            <th>Front card</th><th>Manage</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tableRows}
-        </tbody>
-      </StyledTable>
+      <TableContainer>
+        <StyledTable>
+          <thead>
+            <tr>
+              <th>Front card</th><th>Manage</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableRows}
+          </tbody>
+        </StyledTable>
+      </TableContainer>
     );
   }
 }

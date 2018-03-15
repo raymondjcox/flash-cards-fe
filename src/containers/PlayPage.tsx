@@ -7,12 +7,13 @@ import { RouteProps } from 'react-router';
 import { FetchCards } from '../api/Cards';
 
 const StyledContainer = styled.div`
-  min-height: 100vh;
+  min-height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: -50px;
+  padding-top: 80px;
+  padding-bottom: 20px;
 `;
 
 interface State {

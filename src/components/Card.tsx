@@ -5,12 +5,10 @@ import { CardType } from '../interfaces';
 
 const StyledCard = styled.div`
   background-color: white;
-  margin: 10px 0px;
   padding: 10px;
-  height: 300px;
+  min-height: 300px;
   width: 600px;
   max-width: 100%;
-  margin-bottom: 20px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   color: black;
   display: flex;
@@ -33,7 +31,6 @@ const StyledCardText = styled.div`
   pre {
     background-color: #25292E;
     max-width: 520px;
-    max-height: 275px;
     color: white;
     padding: 10px 20px;
     margin: 0px 20px;
