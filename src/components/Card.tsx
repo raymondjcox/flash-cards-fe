@@ -21,6 +21,7 @@ const StyledCardText = styled.div`
   align-self: center;
   margin-top: auto;
   margin-bottom: auto;
+  max-width: 100%;
   h1 {
     font-size: 2.0rem;
     font-weight: 400;
