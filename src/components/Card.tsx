@@ -21,13 +21,14 @@ const StyledCardText = styled.div`
   align-self: center;
   margin-top: auto;
   margin-bottom: auto;
+  width: 100%;
   max-width: 100%;
   h1 {
     font-size: 2.0rem;
     font-weight: 400;
   }
   p {
-    text-align: center;
+    text-align: left;
   }
   pre {
     background-color: #25292E;
