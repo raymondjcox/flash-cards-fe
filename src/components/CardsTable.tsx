@@ -25,6 +25,9 @@ const StyledTable = styled.table`
       width: 10%;
     }
   }
+  td.review {
+    text-align: center;
+  }
   th {
     padding: 5px 0px;
     border-bottom: 2px solid #eee;
@@ -51,14 +54,29 @@ interface Props {
   cards: CardType[];
   deleteCard: Function;
   editCard: Function;
+  updateCard: Function;
 }
 
 class CardsTable extends React.Component<Props> {
+  updateCard(card: CardType) {
+    return (({ target }: any) => {
+      card.review = target.checked;
+      this.props.updateCard(card);
+    });
+  }
+
   render() {
     const { cards } = this.props;
     const tableRows = cards.map((card) => (
       <tr key={card.id}>
         <td><ReactMarkdown source={card.frontText} /></td>
+        <td className="review">
+          <input
+            type="checkbox"
+            checked={card.review}
+            onChange={this.updateCard(card)}
+          />
+        </td>
         <td>
           <EditIcons>
             <EditSvg onClick={() => this.props.editCard(card)}/>
@@ -73,7 +91,7 @@ class CardsTable extends React.Component<Props> {
         <StyledTable>
           <thead>
             <tr>
-              <th>Front card</th><th>Manage</th>
+              <th>Front card</th><th>Review</th><th>Manage</th>
             </tr>
           </thead>
           <tbody>

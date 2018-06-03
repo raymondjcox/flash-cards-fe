@@ -27,6 +27,7 @@ class CreateCardPage extends React.Component<any, State> {
     super(props);
     let card: CardType = {
       id: undefined,
+      review: true,
       frontText: '',
       backText: ''
     };

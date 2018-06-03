@@ -28,6 +28,7 @@ class EditCardPage extends React.Component<any, State> {
     let card: CardType = {
       id,
       frontText: '',
+      review: true,
       backText: ''
     };
     this.state = { card };

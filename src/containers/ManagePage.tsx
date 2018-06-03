@@ -3,7 +3,7 @@ import DonutSpinner from '../components/DonutSpinner';
 import styled from 'styled-components';
 import CardsTable from '../components/CardsTable';
 import { CardType } from '../interfaces';
-import { FetchCards, FetchDeleteCard } from '../api/Cards';
+import { FetchCards, FetchDeleteCard, FetchUpdateCard } from '../api/Cards';
 import { BlueButton } from '../components/Button';
 
 const StyledContainer = styled.div`
@@ -21,6 +21,7 @@ const StyledButtonContainer = styled.div`
 `;
 
 const ERROR_DELETING = 'Error deleting card!';
+const ERROR_UPDATING = 'Error updating card!';
 const ERROR_LOADING = 'Error loading cards!';
 const ERROR_NO_CARDS = 'No cards!';
 const NO_ERROR = '';
@@ -91,13 +92,35 @@ class ManagePage extends React.Component<any, State> {
         <StyledButtonContainer>
           {CreateButton}
         </StyledButtonContainer>
-        <CardsTable cards={cards} deleteCard={(c: CardType) => this.deleteCard(c)} editCard={(c: CardType) => this.editCard(c)} />
+        <CardsTable
+          cards={cards}
+          deleteCard={(c: CardType) => this.deleteCard(c)}
+          editCard={(c: CardType) => this.editCard(c)}
+          updateCard={(c: CardType) => this.updateCard(c)}
+        />
       </StyledContainer>
     );
   }
 
   renderCreateButton() {
     return <BlueButton onClick={() => this.props.history.push('/create-card')}>Create card</BlueButton>;
+  }
+
+  updateCard(card: CardType) {
+    if (card.id == null) {
+      return;
+    }
+    FetchUpdateCard(card).then((updatedCard: CardType) => {
+      const { cards } = this.state;
+      cards.forEach((c, index) => {
+        if (c.id === updatedCard.id) {
+          cards[index] = updatedCard;
+        }
+      });
+      this.setState({cards, loading: false});
+    }).catch(() => {
+      this.setState({errorMessage: ERROR_UPDATING, loading: false});
+    });
   }
 
   deleteCard(card: CardType) {
