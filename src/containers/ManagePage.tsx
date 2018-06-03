@@ -8,7 +8,7 @@ import { BlueButton } from '../components/Button';
 
 const StyledContainer = styled.div`
   padding: 80px 20px 20px;
-  max-width: 600px;
+  max-width: 800px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;

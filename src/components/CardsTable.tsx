@@ -24,6 +24,9 @@ const StyledTable = styled.table`
     &:last-child {
       width: 10%;
     }
+    img {
+      max-width: 100%
+    }
   }
   td.review {
     text-align: center;
