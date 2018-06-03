@@ -25,6 +25,7 @@ const StyledCardText = styled.div`
   max-width: 100%;
   h1 {
     font-size: 2.0rem;
+    text-align: center;
     font-weight: 400;
   }
   p {
